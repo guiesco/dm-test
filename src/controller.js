@@ -36,7 +36,7 @@ module.exports = {
 
         const recipeObj = {
             "title": recipe.title,
-            "ingredients": recipe.ingredients,
+            "ingredients": recipe.ingredients.split(',').sort(),
             "link": recipe.href,
             "gif": this.getGif(gifSearchQuery)
         };
