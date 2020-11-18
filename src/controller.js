@@ -1,6 +1,6 @@
 const { default: Axios } = require('axios');
 
-module.exports = {
+const controller = module.exports = {
     async getRecipes(req, res) {
         const ingredients = req.params.i;
         let ingArray = ingredients.split(',').sort();
@@ -18,7 +18,7 @@ module.exports = {
             };
 
             for (recipe of recipes) {
-                const recipeObj = await mountRecipeObj(recipe);
+                const recipeObj = await controller.mountRecipeObj(recipe);
                 response.recipes.push(recipeObj);
             }
 
@@ -38,7 +38,7 @@ module.exports = {
             "title": recipe.title,
             "ingredients": recipe.ingredients.split(',').sort(),
             "link": recipe.href,
-            "gif": this.getGif(gifSearchQuery)
+            "gif": await controller.getGif(gifSearchQuery)
         };
         return recipeObj;
     },
