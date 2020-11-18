@@ -1,4 +1,5 @@
 const { default: Axios } = require('axios');
+const { environment } = require('../environments/environments');
 
 const controller = module.exports = {
     async getRecipes(req, res) {
@@ -44,6 +45,6 @@ const controller = module.exports = {
     },
 
     async getGif(gifSearchQuery) {
-        return (await Axios.get(`http://api.giphy.com/v1/gifs/search?q=${gifSearchQuery}&api_key=pPiMNFkdnBt4wGmBiJ9YCryAw3lHJk98&limit=1`)).data.data[0].url;
+        return (await Axios.get(`http://api.giphy.com/v1/gifs/search?q=${gifSearchQuery}&api_key=${environment.giphyKey}=1`)).data.data[0].url;
     }
 };
