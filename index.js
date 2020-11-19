@@ -6,4 +6,6 @@ app.use(express.json())
 
 app.use('', require('./src/routes'))
 
-app.listen(3001)
+const server = app.listen(3001)
+
+module.exports = server;
