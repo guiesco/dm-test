@@ -26,7 +26,6 @@ const controller = module.exports = {
             return res.json(response);
 
         } catch (error) {
-            console.log(error)
             if (error.response.status === 500) {
                 return res.json({ "error": 'No recipe found with those ingredients: ' + ingredients });
             }
