@@ -1,5 +1,5 @@
 const { default: Axios } = require('axios');
-const { environment } = require('../environments/environments');
+const giphyKey = process.env.giphyKey
 
 const controller = module.exports = {
     async getRecipes(req, res) {
@@ -26,6 +26,7 @@ const controller = module.exports = {
             return res.json(response);
 
         } catch (error) {
+            console.log(error)
             if (error.response.status === 500) {
                 return res.json({ "error": 'No recipe found with those ingredients: ' + ingredients });
             }
@@ -33,7 +34,7 @@ const controller = module.exports = {
     },
 
     async mountRecipeObj(recipe) {
-        const gifSearchQuery = recipe.title.replace(' ', '+');
+        const gifSearchQuery = recipe.title.replace(/ /g, '+');
 
         const recipeObj = {
             "title": recipe.title,
@@ -45,6 +46,6 @@ const controller = module.exports = {
     },
 
     async getGif(gifSearchQuery) {
-        return (await Axios.get(`http://api.giphy.com/v1/gifs/search?q=${gifSearchQuery}&api_key=${environment.giphyKey}=1`)).data.data[0].url;
+        return (await Axios.get(`http://api.giphy.com/v1/gifs/search?q=${gifSearchQuery}&api_key=${giphyKey}&limit=1`)).data.data[0].url;
     }
 };
