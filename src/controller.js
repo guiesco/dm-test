@@ -1,3 +1,5 @@
+if(!process.env.giphyKey)
+    require('dotenv').config()
 const { default: Axios } = require('axios');
 const giphyKey = process.env.giphyKey
 
@@ -7,7 +9,9 @@ const controller = module.exports = {
         let ingArray = ingredients.split(',').sort();
 
         if (ingArray.length > 3) {
-            return res.json({ "error": 'Maximum ingredients number is 3.' });
+            return res.status(400).send({
+                message: 'Maximum ingredients number is 3.'
+            })
         }
 
         try {
@@ -27,8 +31,11 @@ const controller = module.exports = {
 
         } catch (error) {
             if (error.response.status === 500) {
-                return res.json({ "error": 'No recipe found with those ingredients: ' + ingredients });
+                return res.status(500).send({
+                    message: 'No recipe found with those ingredients: ' + ingredients
+                })
             }
+            return error
         }
     },
 
