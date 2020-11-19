@@ -7,6 +7,7 @@ Para conseguir rodar o projeto sem problemas, é necessário criar um arquivo .e
 Para não ser necessário criar um app, e consequentemente uma chave de api no giphy, pode usar essa chave: `pPiMNFkdnBt4wGmBiJ9YCryAw3lHJk98`.
 
 Ps: Lembre de atribuí-la como uma string.
+
 Ps2: O arquivo .env deverá ter o seguinte conteudo: `giphyKey = 'pPiMNFkdnBt4wGmBiJ9YCryAw3lHJk98'`
 
 ### Instalar docker e docker compose
